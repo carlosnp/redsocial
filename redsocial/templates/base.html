@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Estrella de la Muerte</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'socialclon/css/master.css' %}">
+  </head>
+  <body>
+    <!-- Barra de navegacion -->
+    <nav class="navbar  mynav" role="navigation" id="navbar">
+      <div class="container">
+        <!-- link principal -->
+        <a class="navbar-brand mynav" href="{% url 'home' %}">STARTsocial</a>
+        <!-- lista de links alineados a la derecha -->
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+            <li> <a class="btn btn-simple" href="#">Enviar</a> </li>
+            <li> <a class="btn btn-simple" href="#">Grupos</a> </li>
+            <li> <a class="btn btn-simple" href="#">Crear Grupo</a> </li>
+            <li> <a class="btn btn-simple" href="{% url 'accounts:logout' %}">Salir</a> </li>
+          {% else %}
+            <li> <a class="btn btn-simple" href="#">Grupos</a> </li>
+            <li> <a class="btn btn-simple" href="{% url 'accounts:login' %}">Iniciar Sesión</a> </li>
+            <li> <a class="btn btn-simple" href="{% url 'accounts:signup' %}">Registrate</a> </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <!--Fin de la barra de navegacion  -->
+
+    <!-- contenido -->
+    <div class="container mycontent">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+
+  </body>
+</html>
